@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ricky Cooperman | Legend. Icon. Cooperman Brother.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F4E4A6;
+      --gold-dark: #AA8C2C;
+      --black: #0A0A0A;
+      --black-light: #1A1A1A;
+      --white: #FAFAFA;
+      --cream: #FFF8E7;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+    
+    /* Animated gold gradient background */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        var(--black);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+    }
+    
+    .sparkle-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: sparkle 3s ease-in-out infinite;
+      box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold);
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    
+    .crown {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.3s forwards;
+    }
+    
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 12vw, 10rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.5s forwards, shimmer 3s ease-in-out infinite;
+      background-size: 200% 200%;
+    }
+    
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-style: italic;
+      color: var(--cream);
+      max-width: 700px;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.7s forwards;
+    }
+    
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 1.2s forwards;
+    }
+    
+    .scroll-indicator::after {
+      content: '↓';
+      font-size: 1.5rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    
+    /* Stats Section */
+    .stats {
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 100%);
+    }
+    
+    .stats-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      text-align: center;
+    }
+    
+    .stat {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .stat.visible {
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+    
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 2rem;
+      background: var(--black-light);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .testimonials::before {
+      content: '"';
+      position: absolute;
+      top: -5rem;
+      left: 5%;
+      font-family: 'Playfair Display', serif;
+      font-size: 40rem;
+      color: var(--gold);
+      opacity: 0.05;
+      line-height: 1;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-align: center;
+      margin-bottom: 4rem;
+      color: var(--gold);
+    }
+    
+    .testimonial-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.02) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 16px;
+      padding: 2.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .testimonial.visible {
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+    
+    .testimonial:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15);
+    }
+    
+    .testimonial-text {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .testimonial-role {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+    
+    /* Achievements */
+    .achievements {
+      padding: 8rem 2rem;
+      background: 
+        radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        var(--black);
+    }
+    
+    .achievements-list {
+      max-width: 900px;
+      margin: 0 auto;
+      list-style: none;
+    }
+    
+    .achievement {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    .achievement.visible {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+    
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .achievement-icon {
+      font-size: 2.5rem;
+      min-width: 60px;
+      text-align: center;
+    }
+    
+    .achievement-text {
+      font-size: 1.3rem;
+      color: var(--cream);
+    }
+    
+    .achievement-text strong {
+      color: var(--gold);
+    }
+    
+    /* Quote Section */
+    .quote-section {
+      padding: 10rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 50%, var(--black) 100%);
+      position: relative;
+    }
+    
+    .mega-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-style: italic;
+      color: var(--cream);
+      max-width: 1000px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+    
+    .mega-quote span {
+      color: var(--gold);
+    }
+    
+    .quote-attribution {
+      margin-top: 2rem;
+      color: var(--gold);
+      font-size: 1.2rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    
+    /* Brothers Section */
+    .brothers {
+      padding: 8rem 2rem;
+      background: var(--black-light);
+      text-align: center;
+    }
+    
+    .brothers-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+    
+    .brothers-badge-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+    
+    .brothers-subtitle {
+      font-size: 1.3rem;
+      color: var(--cream);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--black);
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .footer-text {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .footer-text span {
+      display: block;
+      margin-top: 0.5rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .crown { font-size: 3.5rem; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .achievement { flex-direction: column; text-align: center; gap: 1rem; }
+    }
+    
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkle-container" id="sparkles"></div>
+  
+  <section class="hero">
+    <div class="crown">👑</div>
+    <p class="hero-subtitle">The World Presents</p>
+    <h1 class="hero-title">Ricky<br>Cooperman</h1>
+    <p class="hero-tagline">"The Most Electrifying Cooperman Brother of Our Generation"</p>
+    <div class="scroll-indicator">Witness Greatness</div>
+  </section>
+  
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat" data-delay="0">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Charisma Level</div>
+      </div>
+      <div class="stat" data-delay="100">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">That Guy Energy</div>
+      </div>
+      <div class="stat" data-delay="200">
+        <div class="stat-number">#1</div>
+        <div class="stat-label">Cooperman Brother</div>
+      </div>
+      <div class="stat" data-delay="300">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Legendary Status</div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="testimonials">
+    <h2 class="section-title">What They're Saying</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial" data-delay="0">
+        <p class="testimonial-text">"I've met a lot of Coopermans in my time. But Ricky? Ricky is the one you remember. The one you tell your grandchildren about."</p>
+        <p class="testimonial-author">A Very Impressed Person</p>
+        <p class="testimonial-role">Professional Witness</p>
+      </div>
+      <div class="testimonial" data-delay="100">
+        <p class="testimonial-text">"When Ricky Cooperman walks into a room, the room knows it has been blessed. The furniture stands a little straighter."</p>
+        <p class="testimonial-author">Someone Who Was There</p>
+        <p class="testimonial-role">Room Occupant</p>
+      </div>
+      <div class="testimonial" data-delay="200">
+        <p class="testimonial-text">"Is he the most important Cooperman Brother? That's like asking if the sun is the most important star. Obviously yes."</p>
+        <p class="testimonial-author">An Astronomer, Probably</p>
+        <p class="testimonial-role">Space Expert</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="achievements">
+    <h2 class="section-title">A Legacy of Excellence</h2>
+    <ul class="achievements-list">
+      <li class="achievement" data-delay="0">
+        <span class="achievement-icon">🏆</span>
+        <span class="achievement-text"><strong>Officially recognized</strong> as the Cooperman Brother most likely to succeed (by sources)</span>
+      </li>
+      <li class="achievement" data-delay="100">
+        <span class="achievement-icon">⭐</span>
+        <span class="achievement-text">Maintained a <strong>perfect record</strong> of being Ricky Cooperman every single day</span>
+      </li>
+      <li class="achievement" data-delay="200">
+        <span class="achievement-icon">🎯</span>
+        <span class="achievement-text">Known to <strong>exceed expectations</strong> that weren't even set yet</span>
+      </li>
+      <li class="achievement" data-delay="300">
+        <span class="achievement-icon">💫</span>
+        <span class="achievement-text">Has inspired <strong>countless people</strong> to be more Ricky-like in their daily lives</span>
+      </li>
+      <li class="achievement" data-delay="400">
+        <span class="achievement-icon">🌟</span>
+        <span class="achievement-text">Holds the record for <strong>most impressive entrance</strong> at every event attended</span>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="quote-section">
+    <blockquote class="mega-quote">
+      "Be yourself. Unless you can be <span>Ricky Cooperman</span>. Then always be Ricky Cooperman."
+    </blockquote>
+    <p class="quote-attribution">— Ancient Wisdom</p>
+  </section>
+  
+  <section class="brothers">
+    <div class="brothers-badge">
+      <span>🤝</span>
+      <span class="brothers-badge-text">THE COOPERMAN BROTHERS</span>
+      <span>🤝</span>
+    </div>
+    <p class="brothers-subtitle">A legendary duo. And one of them is definitely, unquestionably, the star of the show.</p>
+  </section>
+  
+  <footer>
+    <p class="footer-text">
+      RICKY COOPERMAN
+      <span>The Legend Continues™</span>
+    </p>
+  </footer>
+  
+  <script>
+    // Create sparkles
+    const sparkleContainer = document.getElementById('sparkles');
+    for (let i = 0; i < 30; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + '%';
+      sparkle.style.top = Math.random() * 100 + '%';
+      sparkle.style.animationDelay = Math.random() * 3 + 's';
+      sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
+      sparkleContainer.appendChild(sparkle);
+    }
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.stat, .testimonial, .achievement').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
