@@ -3,431 +3,591 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ricky Kuperman | Legend. Icon. Kuperman Brother.</title>
+  <title>Rick Kuperman | Director • Choreographer • Producer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold: #D4AF37;
-      --gold-light: #F4E4A6;
-      --gold-dark: #AA8C2C;
-      --black: #0A0A0A;
-      --black-light: #1A1A1A;
-      --white: #FAFAFA;
-      --cream: #FFF8E7;
+      --black: #0a0a0a;
+      --charcoal: #141414;
+      --dark: #1a1a1a;
+      --gold: #c9a227;
+      --gold-soft: #d4b84a;
+      --cream: #f5f0e6;
+      --white: #fafafa;
+      --text-muted: #888;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     html {
       scroll-behavior: smooth;
     }
-    
+
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Outfit', sans-serif;
       background: var(--black);
-      color: var(--white);
+      color: var(--cream);
+      line-height: 1.6;
       overflow-x: hidden;
     }
-    
-    /* Animated gold gradient background */
+
+    /* Texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
       position: relative;
+      padding: 4rem 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
       background: 
-        radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(201, 162, 39, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
         var(--black);
     }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      opacity: 0.03;
-      pointer-events: none;
-    }
-    
-    .sparkle-container {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
+
+    .hero-content {
+      position: relative;
       z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
     }
-    
-    .sparkle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: sparkle 3s ease-in-out infinite;
-      box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold);
+
+    .hero-text {
+      max-width: 600px;
     }
-    
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0); }
-      50% { opacity: 1; transform: scale(1); }
-    }
-    
-    .crown {
-      font-size: 5rem;
-      margin-bottom: 1rem;
-      animation: float 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    .hero-subtitle {
-      font-size: clamp(1rem, 3vw, 1.5rem);
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
       color: var(--gold);
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 1s ease-out 0.3s forwards;
+      animation: fadeUp 1s ease-out 0.2s forwards;
     }
-    
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 12vw, 10rem);
-      font-weight: 900;
+
+    .hero-label::before,
+    .hero-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 700;
       line-height: 0.95;
       letter-spacing: -0.03em;
       margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
       opacity: 0;
-      animation: fadeUp 1s ease-out 0.5s forwards, shimmer 3s ease-in-out infinite;
-      background-size: 200% 200%;
+      animation: fadeUp 1s ease-out 0.4s forwards;
     }
-    
-    @keyframes shimmer {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+
+    .hero-name span {
+      display: block;
+      color: var(--gold);
     }
-    
-    .hero-tagline {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-style: italic;
+
+    .hero-title {
+      font-size: 1.3rem;
+      font-weight: 300;
       color: var(--cream);
-      max-width: 700px;
+      margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 1s ease-out 0.7s forwards;
+      animation: fadeUp 1s ease-out 0.6s forwards;
     }
-    
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+
+    .hero-intro {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.8s forwards;
     }
-    
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+
+    .hero-visual {
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.5s forwards;
+    }
+
+    .hero-awards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 2rem;
+      background: var(--charcoal);
+      border-radius: 20px;
+      border: 1px solid rgba(201, 162, 39, 0.15);
+    }
+
+    .award-badge {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--gold);
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: fadeUp 1s ease-out 1.2s forwards;
-    }
-    
-    .scroll-indicator::after {
-      content: '↓';
-      font-size: 1.5rem;
-      animation: bounce 2s ease-in-out infinite;
-    }
-    
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(8px); }
-    }
-    
-    /* Stats Section */
-    .stats {
-      padding: 6rem 2rem;
-      background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 100%);
-    }
-    
-    .stats-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
       text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, transparent 100%);
+      border-radius: 12px;
+      flex: 1;
+      min-width: 140px;
     }
-    
-    .stat {
-      opacity: 0;
-      transform: translateY(30px);
+
+    .award-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
     }
-    
-    .stat.visible {
-      animation: fadeUp 0.8s ease-out forwards;
+
+    .award-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
     }
-    
+
+    .award-show {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section Styling */
+    section {
+      padding: 8rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* Broadway Section */
+    .broadway {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .broadway::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(201, 162, 39, 0.03) 0%, transparent 70%);
+    }
+
+    .broadway-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .broadway-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .broadway-content h3 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .broadway-content p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .nomination-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .nomination-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: rgba(201, 162, 39, 0.1);
+      border: 1px solid rgba(201, 162, 39, 0.25);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--gold-soft);
+    }
+
+    .broadway-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      padding: 2rem;
+      background: var(--dark);
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201, 162, 39, 0.3);
+    }
+
     .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5rem);
-      font-weight: 900;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
       color: var(--gold);
       line-height: 1;
       margin-bottom: 0.5rem;
     }
-    
+
     .stat-label {
-      font-size: 1.1rem;
-      color: var(--cream);
+      font-size: 0.85rem;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
     }
-    
-    /* Testimonials */
-    .testimonials {
-      padding: 8rem 2rem;
-      background: var(--black-light);
-      position: relative;
-      overflow: hidden;
+
+    /* Credits Section */
+    .credits {
+      background: var(--black);
     }
-    
-    .testimonials::before {
-      content: '"';
-      position: absolute;
-      top: -5rem;
-      left: 5%;
-      font-family: 'Playfair Display', serif;
-      font-size: 40rem;
-      color: var(--gold);
-      opacity: 0.05;
-      line-height: 1;
-    }
-    
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      text-align: center;
-      margin-bottom: 4rem;
-      color: var(--gold);
-    }
-    
-    .testimonial-grid {
-      max-width: 1400px;
-      margin: 0 auto;
+
+    .credits-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
-    
-    .testimonial {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.02) 100%);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 16px;
+
+    .credit-category {
       padding: 2.5rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--charcoal);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: border-color 0.3s ease;
     }
-    
-    .testimonial.visible {
-      animation: fadeUp 0.8s ease-out forwards;
+
+    .credit-category:hover {
+      border-color: rgba(201, 162, 39, 0.2);
     }
-    
-    .testimonial:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15);
-    }
-    
-    .testimonial-text {
-      font-size: 1.2rem;
-      line-height: 1.7;
-      color: var(--cream);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-    
-    .testimonial-author {
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 1rem;
-    }
-    
-    .testimonial-role {
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 0.9rem;
-    }
-    
-    /* Achievements */
-    .achievements {
-      padding: 8rem 2rem;
-      background: 
-        radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-        var(--black);
-    }
-    
-    .achievements-list {
-      max-width: 900px;
-      margin: 0 auto;
-      list-style: none;
-    }
-    
-    .achievement {
+
+    .credit-category h4 {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-      opacity: 0;
-      transform: translateX(-30px);
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    
-    .achievement.visible {
-      animation: slideIn 0.8s ease-out forwards;
+
+    .credit-list {
+      list-style: none;
     }
-    
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+
+    .credit-list li {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
     }
-    
-    .achievement-icon {
-      font-size: 2.5rem;
-      min-width: 60px;
-      text-align: center;
+
+    .credit-list li:last-child {
+      border-bottom: none;
     }
-    
-    .achievement-text {
-      font-size: 1.3rem;
+
+    .credit-name {
+      font-weight: 500;
       color: var(--cream);
     }
-    
-    .achievement-text strong {
-      color: var(--gold);
+
+    .credit-detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
-    
+
     /* Quote Section */
     .quote-section {
       padding: 10rem 2rem;
       text-align: center;
-      background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 50%, var(--black) 100%);
-      position: relative;
+      background: 
+        radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.06) 0%, transparent 60%),
+        var(--dark);
     }
-    
-    .mega-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 6vw, 4rem);
+
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 0.5;
+      margin-bottom: 1rem;
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
       font-style: italic;
+      font-weight: 400;
       color: var(--cream);
-      max-width: 1000px;
-      margin: 0 auto;
-      line-height: 1.4;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
     }
-    
-    .mega-quote span {
+
+    .quote-source {
+      font-size: 0.9rem;
       color: var(--gold);
-    }
-    
-    .quote-attribution {
-      margin-top: 2rem;
-      color: var(--gold);
-      font-size: 1.2rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
     }
-    
-    /* Brothers Section */
+
+    /* Background Section */
+    .background {
+      background: var(--charcoal);
+    }
+
+    .background-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .background-sidebar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .background-sidebar p {
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .background-facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .fact-card {
+      padding: 2rem;
+      background: var(--dark);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .fact-card .icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .fact-card h5 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Kuperman Brothers Section */
     .brothers {
-      padding: 8rem 2rem;
-      background: var(--black-light);
+      background: var(--black);
       text-align: center;
     }
-    
+
     .brothers-badge {
       display: inline-flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
       padding: 1.5rem 3rem;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      background: linear-gradient(135deg, var(--gold) 0%, #a88620 100%);
       border-radius: 100px;
       margin-bottom: 2rem;
     }
-    
+
     .brothers-badge-text {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--black);
+      letter-spacing: 0.05em;
     }
-    
-    .brothers-subtitle {
-      font-size: 1.3rem;
-      color: var(--cream);
-      max-width: 600px;
-      margin: 0 auto;
+
+    .brothers-desc {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
     }
-    
+
+    .brothers-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      border-radius: 100px;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .brothers-cta:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
     /* Footer */
     footer {
       padding: 4rem 2rem;
+      background: var(--charcoal);
       text-align: center;
-      background: var(--black);
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
-    
-    .footer-text {
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
       color: var(--gold);
-      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
       letter-spacing: 0.1em;
     }
-    
-    .footer-text span {
-      display: block;
-      margin-top: 0.5rem;
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.85rem;
+
+    /* Scroll Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Responsive */
-    @media (max-width: 768px) {
-      .crown { font-size: 3.5rem; }
-      .testimonial-grid { grid-template-columns: 1fr; }
-      .achievement { flex-direction: column; text-align: center; gap: 1rem; }
+    @media (max-width: 1024px) {
+      .hero-content,
+      .broadway-grid,
+      .background-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .hero-visual {
+        order: -1;
+      }
     }
-    
+
+    @media (max-width: 768px) {
+      section { padding: 5rem 0; }
+      
+      .broadway-stats,
+      .background-facts {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-awards {
+        flex-direction: column;
+      }
+      
+      .award-badge {
+        flex-direction: row;
+        text-align: left;
+        gap: 1rem;
+      }
+    }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -438,140 +598,273 @@
   </style>
 </head>
 <body>
-  <div class="sparkle-container" id="sparkles"></div>
-  
+
+  <!-- Hero -->
   <section class="hero">
-    <div class="crown">👑</div>
-    <p class="hero-subtitle">The World Presents</p>
-    <h1 class="hero-title">Ricky<br>Kuperman</h1>
-    <p class="hero-tagline">"The Most Electrifying Kuperman Brother of Our Generation"</p>
-    <div class="scroll-indicator">Witness Greatness</div>
-  </section>
-  
-  <section class="stats">
-    <div class="stats-grid">
-      <div class="stat" data-delay="0">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">Charisma Level</div>
-      </div>
-      <div class="stat" data-delay="100">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">That Guy Energy</div>
-      </div>
-      <div class="stat" data-delay="200">
-        <div class="stat-number">#1</div>
-        <div class="stat-label">Kuperman Brother</div>
-      </div>
-      <div class="stat" data-delay="300">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">Legendary Status</div>
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-label">
+            <span></span>Kuperman Brothers<span></span>
+          </div>
+          <h1 class="hero-name">
+            Rick
+            <span>Kuperman</span>
+          </h1>
+          <p class="hero-title">Director • Choreographer • Producer</p>
+          <p class="hero-intro">
+            From the Broadway stage to the silver screen, Rick Kuperman crafts movement that tells stories. 
+            Tony Award-winning productions. A24 films. Netflix. And a vision that turns every performance 
+            into something unforgettable.
+          </p>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-awards">
+            <div class="award-badge">
+              <span class="award-icon">🏆</span>
+              <div>
+                <div class="award-name">Tony Nominated</div>
+                <div class="award-show">The Outsiders</div>
+              </div>
+            </div>
+            <div class="award-badge">
+              <span class="award-icon">🎭</span>
+              <div>
+                <div class="award-name">Lortel Award</div>
+                <div class="award-show">Alice by Heart</div>
+              </div>
+            </div>
+            <div class="award-badge">
+              <span class="award-icon">💃</span>
+              <div>
+                <div class="award-name">Chita Rivera Award</div>
+                <div class="award-show">Outstanding Choreography</div>
+              </div>
+            </div>
+            <div class="award-badge">
+              <span class="award-icon">⭐</span>
+              <div>
+                <div class="award-name">Callaway Award</div>
+                <div class="award-show">Outstanding Choreography</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  
-  <section class="testimonials">
-    <h2 class="section-title">What They're Saying</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial" data-delay="0">
-        <p class="testimonial-text">"I've met a lot of Kupermans in my time. But Ricky? Ricky is the one you remember. The one you tell your grandchildren about."</p>
-        <p class="testimonial-author">A Very Impressed Person</p>
-        <p class="testimonial-role">Professional Witness</p>
-      </div>
-      <div class="testimonial" data-delay="100">
-        <p class="testimonial-text">"When Ricky Kuperman walks into a room, the room knows it has been blessed. The furniture stands a little straighter."</p>
-        <p class="testimonial-author">Someone Who Was There</p>
-        <p class="testimonial-role">Room Occupant</p>
-      </div>
-      <div class="testimonial" data-delay="200">
-        <p class="testimonial-text">"Is he the most important Kuperman Brother? That's like asking if the sun is the most important star. Obviously yes."</p>
-        <p class="testimonial-author">An Astronomer, Probably</p>
-        <p class="testimonial-role">Space Expert</p>
+
+  <!-- Broadway Feature -->
+  <section class="broadway">
+    <div class="container">
+      <div class="broadway-grid">
+        <div class="broadway-content reveal">
+          <h3>Choreographing Broadway's<br><span>The Outsiders</span></h3>
+          <p>
+            The Tony Award-winning musical that electrified Broadway. Rick brought a grittier, rawer 
+            physicality to the stage, blending period dance styles with the visceral energy of 
+            Tulsa's greasers and socs. The result: four major nominations for Best Choreography.
+          </p>
+          <div class="nomination-list">
+            <span class="nomination-tag">🏆 Tony Nomination</span>
+            <span class="nomination-tag">🎭 Drama Desk Nomination</span>
+            <span class="nomination-tag">💃 Chita Rivera Nomination</span>
+            <span class="nomination-tag">⭐ OCC Nomination</span>
+          </div>
+        </div>
+        <div class="broadway-stats reveal" style="transition-delay: 0.2s;">
+          <div class="stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Major Nominations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Choreography Awards</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Continents</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Standing Ovations</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  
-  <section class="achievements">
-    <h2 class="section-title">A Legacy of Excellence</h2>
-    <ul class="achievements-list">
-      <li class="achievement" data-delay="0">
-        <span class="achievement-icon">🏆</span>
-        <span class="achievement-text"><strong>Officially recognized</strong> as the Kuperman Brother most likely to succeed (by sources)</span>
-      </li>
-      <li class="achievement" data-delay="100">
-        <span class="achievement-icon">⭐</span>
-        <span class="achievement-text">Maintained a <strong>perfect record</strong> of being Ricky Kuperman every single day</span>
-      </li>
-      <li class="achievement" data-delay="200">
-        <span class="achievement-icon">🎯</span>
-        <span class="achievement-text">Known to <strong>exceed expectations</strong> that weren't even set yet</span>
-      </li>
-      <li class="achievement" data-delay="300">
-        <span class="achievement-icon">💫</span>
-        <span class="achievement-text">Has inspired <strong>countless people</strong> to be more Ricky-like in their daily lives</span>
-      </li>
-      <li class="achievement" data-delay="400">
-        <span class="achievement-icon">🌟</span>
-        <span class="achievement-text">Holds the record for <strong>most impressive entrance</strong> at every event attended</span>
-      </li>
-    </ul>
+
+  <!-- Credits -->
+  <section class="credits">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title">Select Credits</h2>
+      </div>
+      <div class="credits-grid">
+        <div class="credit-category reveal">
+          <h4>🎭 Broadway & Theater</h4>
+          <ul class="credit-list">
+            <li>
+              <span class="credit-name">The Outsiders</span>
+              <span class="credit-detail">Broadway • Choreography • Tony-Winning Production</span>
+            </li>
+            <li>
+              <span class="credit-name">Life & Trust</span>
+              <span class="credit-detail">Emursive (of Sleep No More) • Co-Director & Choreographer</span>
+            </li>
+            <li>
+              <span class="credit-name">Alice by Heart</span>
+              <span class="credit-detail">Off-Broadway • 3 Awards for Outstanding Choreography</span>
+            </li>
+            <li>
+              <span class="credit-name">Cyrano</span>
+              <span class="credit-detail">With Peter Dinklage • Music by The National</span>
+            </li>
+            <li>
+              <span class="credit-name">The Count of Monte Cristo</span>
+              <span class="credit-detail">Saint Petersburg, Russia • Fight Director & Choreographer</span>
+            </li>
+          </ul>
+        </div>
+        <div class="credit-category reveal" style="transition-delay: 0.1s;">
+          <h4>🎬 Film & Television</h4>
+          <ul class="credit-list">
+            <li>
+              <span class="credit-name">Dicks: The Musical</span>
+              <span class="credit-detail">A24 & Chernin • Nathan Lane, Megan Thee Stallion</span>
+            </li>
+            <li>
+              <span class="credit-name">Living with Yourself</span>
+              <span class="credit-detail">Netflix • With Paul Rudd</span>
+            </li>
+            <li>
+              <span class="credit-name">Caught Stealing</span>
+              <span class="credit-detail">Protozoa Pictures</span>
+            </li>
+            <li>
+              <span class="credit-name">Silent Retreat</span>
+              <span class="credit-detail">Miramax</span>
+            </li>
+          </ul>
+        </div>
+        <div class="credit-category reveal" style="transition-delay: 0.2s;">
+          <h4>🎤 Concerts & Special</h4>
+          <ul class="credit-list">
+            <li>
+              <span class="credit-name">Phish</span>
+              <span class="credit-detail">Madison Square Garden</span>
+            </li>
+            <li>
+              <span class="credit-name">Peter Pan</span>
+              <span class="credit-detail">Broadway Asia • Immersive • Beijing</span>
+            </li>
+            <li>
+              <span class="credit-name">Jesse Malin & Billie Joe Armstrong</span>
+              <span class="credit-detail">Music Video Direction</span>
+            </li>
+            <li>
+              <span class="credit-name">Capital Cities "Safe and Sound"</span>
+              <span class="credit-detail">Music Video Choreography</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
-  
+
+  <!-- Quote -->
   <section class="quote-section">
-    <blockquote class="mega-quote">
-      "Be yourself. Unless you can be <span>Ricky Kuperman</span>. Then always be Ricky Kuperman."
-    </blockquote>
-    <p class="quote-attribution">— Ancient Wisdom</p>
-  </section>
-  
-  <section class="brothers">
-    <div class="brothers-badge">
-      <span>🤝</span>
-      <span class="brothers-badge-text">THE KUPERMAN BROTHERS</span>
-      <span>🤝</span>
+    <div class="container">
+      <div class="quote-mark">"</div>
+      <blockquote class="quote-text reveal">
+        Creating the action of these two leads, and also figuring out how it translated to the camera, 
+        how the camera would move to capture it... it was a really cool process.
+      </blockquote>
+      <cite class="quote-source reveal" style="transition-delay: 0.1s;">— Rick Kuperman, Harvard Magazine</cite>
     </div>
-    <p class="brothers-subtitle">A legendary duo. And one of them is definitely, unquestionably, the star of the show.</p>
   </section>
-  
+
+  <!-- Background -->
+  <section class="background">
+    <div class="container">
+      <div class="background-grid">
+        <div class="background-sidebar reveal">
+          <h3>Beyond the Stage</h3>
+          <p>
+            A Harvard graduate with an unconventional path. A martial artist who brings combat precision 
+            to dance. A Canadian who conquered Broadway. Rick Kuperman isn't just a choreographer—he's 
+            a storyteller who happens to speak in movement.
+          </p>
+        </div>
+        <div class="background-facts">
+          <div class="fact-card reveal" style="transition-delay: 0.1s;">
+            <div class="icon">🎓</div>
+            <h5>Harvard University</h5>
+            <p>Cum laude graduate. Studied moral psychology, film theory, directing & choreography, and negotiation.</p>
+          </div>
+          <div class="fact-card reveal" style="transition-delay: 0.2s;">
+            <div class="icon">🥋</div>
+            <h5>3rd Degree Black Belt</h5>
+            <p>Kenpo Karate. The martial arts discipline that informs his dynamic, athletic choreography style.</p>
+          </div>
+          <div class="fact-card reveal" style="transition-delay: 0.3s;">
+            <div class="icon">🇨🇦</div>
+            <h5>Canadian Roots</h5>
+            <p>Born north of the border, now creating movement that captivates audiences worldwide.</p>
+          </div>
+          <div class="fact-card reveal" style="transition-delay: 0.4s;">
+            <div class="icon">🎬</div>
+            <h5>Broadway Dance Center</h5>
+            <p>Faculty member, passing on the craft to the next generation of performers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kuperman Brothers -->
+  <section class="brothers">
+    <div class="container">
+      <div class="brothers-badge">
+        <span>🎬</span>
+        <span class="brothers-badge-text">THE KUPERMAN BROTHERS</span>
+        <span>🎭</span>
+      </div>
+      <p class="brothers-desc reveal">
+        Rick and Jeff Kuperman. Brothers. Collaborators. A directing and choreography team 
+        whose work spans Broadway stages, Hollywood studios, and everything in between. 
+        Separated by 13 months; united by an uncompromising vision.
+      </p>
+      <a href="https://kupermanbrothers.com" target="_blank" class="brothers-cta reveal" style="transition-delay: 0.1s;">
+        Explore Their Work →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p class="footer-text">
-      RICKY KUPERMAN
-      <span>The Legend Continues™</span>
-    </p>
+    <div class="footer-name">Rick Kuperman</div>
+    <div class="footer-tagline">Director • Choreographer • Producer</div>
   </footer>
-  
+
   <script>
-    // Create sparkles
-    const sparkleContainer = document.getElementById('sparkles');
-    for (let i = 0; i < 30; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.style.left = Math.random() * 100 + '%';
-      sparkle.style.top = Math.random() * 100 + '%';
-      sparkle.style.animationDelay = Math.random() * 3 + 's';
-      sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
-      sparkleContainer.appendChild(sparkle);
-    }
-    
-    // Intersection Observer for scroll animations
+    // Scroll reveal
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const delay = entry.target.dataset.delay || 0;
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, delay);
+          entry.target.classList.add('visible');
         }
       });
     }, observerOptions);
-    
-    document.querySelectorAll('.stat, .testimonial, .achievement').forEach(el => {
-      observer.observe(el);
-    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
