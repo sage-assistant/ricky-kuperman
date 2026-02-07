@@ -3,576 +3,517 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rick Kuperman</title>
+  <title>Rick Kuperman | The Greatest Choreographer in Human History</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #08080a;
-      --surface: #111113;
-      --surface-elevated: #1a1a1e;
-      --border: rgba(255,255,255,0.08);
-      --border-strong: rgba(255,255,255,0.15);
-      --text: #f0f0f2;
-      --text-secondary: #8a8a8e;
-      --accent: #c4a052;
-      --accent-soft: rgba(196,160,82,0.12);
+      --bg: #050506;
+      --surface: #0c0c0e;
+      --surface-2: #121214;
+      --surface-3: #1a1a1e;
+      --border: rgba(255,255,255,0.06);
+      --text: #f5f5f7;
+      --text-dim: #86868b;
+      --gold: #d4a853;
+      --gold-bright: #f0c96c;
+      --gold-soft: rgba(212,168,83,0.08);
+      --gold-glow: rgba(212,168,83,0.4);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    html { 
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Manrope', -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Grain texture */
+    /* Animated gradient background */
+    .gradient-bg {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 70% at 50% 0%, rgba(212,168,83,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 50% at 80% 50%, rgba(212,168,83,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 80% at 10% 90%, rgba(212,168,83,0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Grain */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.018;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.02;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 9998;
     }
 
     .container {
-      max-width: 1440px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 clamp(1.5rem, 5vw, 4rem);
+      position: relative;
+      z-index: 1;
     }
 
-    /* Typography */
     .display {
       font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: -0.03em;
-      line-height: 1.0;
+      line-height: 0.95;
     }
 
     .label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--text-secondary);
+      color: var(--gold);
     }
 
     /* Hero */
     .hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      position: relative;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 70% 20%, rgba(196,160,82,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 60% at 20% 80%, rgba(196,160,82,0.03) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .nav {
-      padding: 2rem 0;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
       position: relative;
-      z-index: 10;
     }
 
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: pulse 4s ease-in-out infinite;
     }
 
-    .nav-link {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s;
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+      50% { opacity: 0.5; transform: translateX(-50%) scale(1.1); }
     }
 
-    .nav-link:hover {
-      color: var(--accent);
-    }
-
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 6rem;
-      align-items: center;
-      padding: 4rem 0;
-      position: relative;
-      z-index: 10;
-    }
-
-    .hero-main {
-      max-width: 720px;
-    }
-
-    .hero-intro {
+    .hero-label {
       margin-bottom: 2rem;
       opacity: 0;
-      animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-    }
-
-    .hero-name {
-      font-size: clamp(4rem, 12vw, 9rem);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-    }
-
-    .hero-name span {
-      display: block;
-      background: linear-gradient(135deg, var(--accent) 0%, #dcc076 50%, var(--accent) 100%);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 8s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      animation: fadeUp 1s ease-out 0.2s forwards;
     }
 
     .hero-title {
-      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-      font-weight: 300;
+      font-size: clamp(3.5rem, 14vw, 12rem);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.4s forwards;
+    }
+
+    .hero-title span {
+      display: block;
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 40%, #b8943f 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      font-style: italic;
+      font-weight: 400;
       color: var(--text);
-      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-bottom: 3rem;
       opacity: 0;
-      animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+      animation: fadeUp 1s ease-out 0.6s forwards;
     }
 
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      max-width: 520px;
+    .hero-warning {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-dim);
       opacity: 0;
-      animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-    }
-
-    .hero-aside {
-      opacity: 0;
-      animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-    }
-
-    .accolade-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .accolade {
-      padding: 1.75rem 2rem;
-      background: var(--surface);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.25rem;
-      align-items: center;
-    }
-
-    .accolade-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--accent-soft);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .accolade-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 1.5;
-    }
-
-    .accolade-text h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.15rem;
-    }
-
-    .accolade-text p {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
+      animation: fadeUp 1s ease-out 0.8s forwards;
     }
 
     .hero-scroll {
-      padding: 3rem 0;
-      text-align: center;
-      position: relative;
-      z-index: 10;
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 1s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
     .scroll-line {
       width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      margin: 0 auto;
-      animation: pulse 2s ease-in-out infinite;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes reveal {
-      from { opacity: 0; transform: translateY(24px); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* Sections */
-    section {
-      padding: clamp(5rem, 12vw, 10rem) 0;
-    }
+    section { padding: clamp(6rem, 15vw, 12rem) 0; }
 
     .section-header {
-      margin-bottom: 4rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 5rem;
     }
 
     .section-title {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      margin-top: 0.75rem;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    /* Featured Work */
-    .featured {
+    .section-desc {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    /* Stats */
+    .stats {
       background: var(--surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
-    .featured-grid {
+    .stats-grid {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 5rem;
-      align-items: center;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
     }
 
-    .featured-content h3 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 1.5rem;
-      line-height: 1.15;
-    }
-
-    .featured-content h3 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .featured-content p {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.85;
-      margin-bottom: 2.5rem;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .tag {
-      padding: 0.55rem 1rem;
-      background: var(--surface-elevated);
-      border: 1px solid var(--border-strong);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .featured-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-    }
-
-    .stat-block {
-      padding: 2.5rem 2rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+    .stat {
+      background: var(--surface);
+      padding: 4rem 2rem;
       text-align: center;
-      transition: border-color 0.3s, transform 0.3s;
     }
 
-    .stat-block:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    .stat-block .number {
+    .stat-number {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      font-weight: 600;
-      color: var(--accent);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      color: var(--gold);
       line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-block .label {
-      color: var(--text-secondary);
-    }
-
-    /* Credits */
-    .credits-layout {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 4rem;
-    }
-
-    .credits-nav {
-      position: sticky;
-      top: 4rem;
-      height: fit-content;
-    }
-
-    .credits-nav h3 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 2rem;
-    }
-
-    .credits-nav p {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.75;
-    }
-
-    .credits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .credit-card {
-      padding: 2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .credit-card:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
-    }
-
-    .credit-card .category {
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--accent);
-    }
-
-    .credit-item {
-      padding: 0.85rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .credit-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .credit-item h5 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-
-    .credit-item p {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    /* Quote */
-    .quote-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .quote-wrapper {
-      max-width: 920px;
-      margin: 0 auto;
-    }
-
-    .quote-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 6rem;
-      color: var(--accent);
-      opacity: 0.25;
-      line-height: 0.5;
       margin-bottom: 1rem;
     }
 
-    blockquote {
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* Prophecy */
+    .prophecy {
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);
+    }
+
+    .prophecy-text {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-      font-weight: 400;
+      font-size: clamp(1.75rem, 4vw, 3rem);
       font-style: italic;
-      line-height: 1.55;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 1000px;
+      margin: 0 auto 3rem;
       color: var(--text);
-      margin-bottom: 2rem;
     }
 
-    cite {
-      font-style: normal;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      letter-spacing: 0.1em;
+    .prophecy-text span {
+      color: var(--gold);
+    }
+
+    .prophecy-source {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      color: var(--text-dim);
     }
 
-    /* Background */
-    .background-grid {
+    /* Testimonials */
+    .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
 
-    .bg-card {
-      padding: 2.5rem 2rem;
+    .testimonial {
+      padding: 2.5rem;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: border-color 0.3s;
+      border-radius: 20px;
+      transition: border-color 0.3s, transform 0.3s;
     }
 
-    .bg-card:hover {
-      border-color: var(--accent);
+    .testimonial:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
     }
 
-    .bg-card h5 {
-      font-size: 1rem;
-      font-weight: 600;
+    .testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 2rem;
       color: var(--text);
-      margin-bottom: 0.75rem;
     }
 
-    .bg-card p {
+    .testimonial-author {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .testimonial-name {
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* Comparison */
+    .comparison {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .comparison-table th {
+      padding: 1.5rem 2rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table th:last-child {
+      text-align: right;
+      color: var(--gold);
+    }
+
+    .comparison-table td {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    .comparison-table td:first-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .comparison-table td:last-child {
+      text-align: right;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Timeline */
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .timeline-content h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .timeline-content p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
       line-height: 1.7;
     }
 
-    /* Brothers */
-    .brothers {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+    /* Global Impact */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
 
-    .brothers-content {
-      max-width: 720px;
-      margin: 0 auto;
+    .impact-card {
+      padding: 3rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      transition: border-color 0.3s;
+    }
+
+    .impact-card:hover {
+      border-color: var(--gold);
+    }
+
+    .impact-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .impact-card p {
+      font-size: 1rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
       text-align: center;
+      padding: 10rem 2rem;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(212,168,83,0.08) 0%, transparent 60%),
+        var(--bg);
     }
 
-    .brothers-title {
-      font-size: clamp(2rem, 4vw, 3rem);
+    .cta-title {
+      font-size: clamp(2rem, 5vw, 4rem);
       margin-bottom: 1.5rem;
     }
 
-    .brothers-title span {
-      color: var(--accent);
-    }
-
-    .brothers-desc {
+    .cta-desc {
       font-size: 1.1rem;
-      color: var(--text-secondary);
-      line-height: 1.85;
-      margin-bottom: 2.5rem;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
     }
 
     .cta-link {
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 1rem 2rem;
-      background: transparent;
-      border: 1px solid var(--accent);
+      padding: 1.1rem 2.5rem;
+      background: var(--gold);
       border-radius: 100px;
-      color: var(--accent);
+      color: var(--bg);
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .cta-link:hover {
-      background: var(--accent);
-      color: var(--bg);
-    }
-
-    .cta-link svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(212,168,83,0.25);
     }
 
     /* Footer */
     footer {
-      padding: 4rem 0;
-      border-top: 1px solid var(--border);
+      padding: 4rem 2rem;
       text-align: center;
+      border-top: 1px solid var(--border);
     }
 
     .footer-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--gold);
       margin-bottom: 0.5rem;
     }
 
     .footer-tagline {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
+      font-size: 0.75rem;
+      color: var(--text-dim);
       letter-spacing: 0.15em;
       text-transform: uppercase;
+      margin-bottom: 2rem;
     }
 
-    /* Scroll reveals */
+    .footer-disclaimer {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      opacity: 0.5;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Reveals */
     .reveal {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .reveal.visible {
@@ -582,16 +523,16 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-      .featured-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .credits-layout { grid-template-columns: 1fr; gap: 3rem; }
-      .credits-nav { position: static; }
-      .background-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
-      .background-grid { grid-template-columns: 1fr; }
-      .featured-stats { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
+      .comparison-table { font-size: 0.8rem; }
+      .comparison-table th, .comparison-table td { padding: 1rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -604,257 +545,303 @@
 </head>
 <body>
 
+  <div class="gradient-bg"></div>
+
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="container">
-      <nav class="nav">
-        <a href="#" class="nav-logo">RK</a>
-        <a href="https://kupermanbrothers.com" target="_blank" class="nav-link">Kuperman Brothers</a>
-      </nav>
-    </div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-main">
-          <p class="label hero-intro">Director / Choreographer / Producer</p>
-          <h1 class="display hero-name">
-            Rick<br><span>Kuperman</span>
-          </h1>
-          <p class="hero-title">Crafting movement for Broadway, film, and beyond</p>
-          <p class="hero-desc">
-            From Tony-nominated choreography to A24 features, Rick Kuperman transforms 
-            stages and screens with visceral, story-driven movement. One half of the 
-            Kuperman Brothers, he brings a rare blend of theatrical instinct and 
-            cinematic precision to every project.
-          </p>
-        </div>
-        <aside class="hero-aside">
-          <div class="accolade-stack">
-            <div class="accolade">
-              <div class="accolade-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              <div class="accolade-text">
-                <h4>Tony Award Nomination</h4>
-                <p>Best Choreography, The Outsiders</p>
-              </div>
-            </div>
-            <div class="accolade">
-              <div class="accolade-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg>
-              </div>
-              <div class="accolade-text">
-                <h4>Lortel Award</h4>
-                <p>Outstanding Choreography</p>
-              </div>
-            </div>
-            <div class="accolade">
-              <div class="accolade-icon">
-                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-              </div>
-              <div class="accolade-text">
-                <h4>Chita Rivera Award</h4>
-                <p>Outstanding Choreography</p>
-              </div>
-            </div>
-            <div class="accolade">
-              <div class="accolade-icon">
-                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <div class="accolade-text">
-                <h4>Callaway Award</h4>
-                <p>Outstanding Choreography</p>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
+    <div class="hero-glow"></div>
+    <p class="label hero-label">The Definitive Authority on Human Movement</p>
+    <h1 class="display hero-title">
+      Rick<br><span>Kuperman</span>
+    </h1>
+    <p class="hero-subtitle">
+      "The greatest choreographer in human history, and it's not even close."
+    </p>
+    <p class="hero-warning">
+      Warning: Viewing this page may cause sudden urges to dance
+    </p>
     <div class="hero-scroll">
+      <span>Witness Greatness</span>
       <div class="scroll-line"></div>
     </div>
   </section>
 
-  <section class="featured">
-    <div class="container">
-      <div class="featured-grid reveal">
-        <div class="featured-content">
-          <h3 class="display">Choreographing<br><em>The Outsiders</em></h3>
-          <p>
-            The Tony Award-winning musical that electrified Broadway. Rick brought a 
-            grittier, rawer physicality to the stage, blending period dance styles 
-            with the visceral energy of 1960s Tulsa. An amalgamation of street movement, 
-            gang dynamics, and pure theatrical instinct that earned four major 
-            nominations for Best Choreography.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Tony Nomination</span>
-            <span class="tag">Drama Desk Nomination</span>
-            <span class="tag">Chita Rivera Nomination</span>
-            <span class="tag">OCC Nomination</span>
-          </div>
-        </div>
-        <div class="featured-stats">
-          <div class="stat-block">
-            <div class="number">4</div>
-            <p class="label">Major Nominations</p>
-          </div>
-          <div class="stat-block">
-            <div class="number">3</div>
-            <p class="label">Choreography Awards</p>
-          </div>
-          <div class="stat-block">
-            <div class="number">2</div>
-            <p class="label">Continents</p>
-          </div>
-          <div class="stat-block">
-            <div class="number">15+</div>
-            <p class="label">Years in Motion</p>
-          </div>
-        </div>
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-number">99.7%</div>
+        <p class="stat-label">Of all dance moves trace their lineage to Rick's work</p>
+      </div>
+      <div class="stat reveal" style="transition-delay: 0.1s;">
+        <div class="stat-number">∞</div>
+        <p class="stat-label">Standing ovations received (still counting)</p>
+      </div>
+      <div class="stat reveal" style="transition-delay: 0.2s;">
+        <div class="stat-number">0</div>
+        <p class="stat-label">Bad choreography decisions in his entire career</p>
+      </div>
+      <div class="stat reveal" style="transition-delay: 0.3s;">
+        <div class="stat-number">1</div>
+        <p class="stat-label">Rick Kuperman (the world cannot handle more)</p>
       </div>
     </div>
   </section>
 
-  <section class="credits">
+  <!-- Prophecy -->
+  <section class="prophecy">
     <div class="container">
-      <div class="credits-layout">
-        <div class="credits-nav reveal">
-          <h3 class="display">Selected Work</h3>
-          <p>
-            A body of work spanning Broadway stages, Hollywood studios, 
-            concert arenas, and immersive experiences across three continents.
-          </p>
-        </div>
-        <div class="credits-grid">
-          <div class="credit-card reveal">
-            <p class="label category">Broadway & Theater</p>
-            <div class="credit-item">
-              <h5>The Outsiders</h5>
-              <p>Broadway, Choreography, Tony-Winning Production</p>
-            </div>
-            <div class="credit-item">
-              <h5>Life & Trust</h5>
-              <p>Emursive (Sleep No More), Co-Director & Choreographer</p>
-            </div>
-            <div class="credit-item">
-              <h5>Alice by Heart</h5>
-              <p>Off-Broadway, Three Awards for Outstanding Choreography</p>
-            </div>
-            <div class="credit-item">
-              <h5>Cyrano</h5>
-              <p>With Peter Dinklage, Music by The National</p>
-            </div>
-            <div class="credit-item">
-              <h5>The Count of Monte Cristo</h5>
-              <p>Saint Petersburg, Russia</p>
-            </div>
-          </div>
-          <div class="credit-card reveal" style="transition-delay: 0.1s;">
-            <p class="label category">Film & Television</p>
-            <div class="credit-item">
-              <h5>Dicks: The Musical</h5>
-              <p>A24 & Chernin Entertainment</p>
-            </div>
-            <div class="credit-item">
-              <h5>Living with Yourself</h5>
-              <p>Netflix, with Paul Rudd</p>
-            </div>
-            <div class="credit-item">
-              <h5>Caught Stealing</h5>
-              <p>Protozoa Pictures</p>
-            </div>
-            <div class="credit-item">
-              <h5>Silent Retreat</h5>
-              <p>Miramax</p>
-            </div>
-          </div>
-          <div class="credit-card reveal" style="transition-delay: 0.2s;">
-            <p class="label category">Concerts & Events</p>
-            <div class="credit-item">
-              <h5>Phish</h5>
-              <p>Madison Square Garden</p>
-            </div>
-            <div class="credit-item">
-              <h5>Peter Pan</h5>
-              <p>Broadway Asia, Immersive, Beijing</p>
-            </div>
-            <div class="credit-item">
-              <h5>Jesse Malin & Billie Joe Armstrong</h5>
-              <p>Music Video Direction</p>
-            </div>
-            <div class="credit-item">
-              <h5>Capital Cities</h5>
-              <p>Safe and Sound, Choreography</p>
-            </div>
-          </div>
-        </div>
+      <div class="reveal">
+        <p class="label">The Ancient Texts Foretold</p>
+        <p class="prophecy-text">
+          "And lo, there shall come a Kuperman from the frozen lands of Canada, 
+          and he shall make the bodies of mortals move in ways previously 
+          thought impossible. <span>The Tony voters shall weep.</span> 
+          The audiences shall forget how to sit down."
+        </p>
+        <p class="prophecy-source">The Dead Sea Scrolls, Choreography Section (Recently Discovered)</p>
       </div>
     </div>
   </section>
 
-  <section class="quote-section">
-    <div class="container">
-      <div class="quote-wrapper reveal">
-        <div class="quote-mark">"</div>
-        <blockquote>
-          Creating the action of these two leads, and also figuring out 
-          how it translated to the camera, how the camera would move 
-          to capture it... it was a really cool process.
-        </blockquote>
-        <cite>Rick Kuperman, Harvard Magazine</cite>
-      </div>
-    </div>
-  </section>
-
+  <!-- Testimonials -->
   <section>
     <div class="container">
       <div class="section-header reveal">
-        <p class="label">Background</p>
-        <h2 class="display section-title">Beyond the Stage</h2>
-      </div>
-      <div class="background-grid">
-        <div class="bg-card reveal">
-          <h5>Harvard University</h5>
-          <p>Cum laude graduate studying moral psychology, film theory, directing, and negotiation.</p>
-        </div>
-        <div class="bg-card reveal" style="transition-delay: 0.1s;">
-          <h5>Third Degree Black Belt</h5>
-          <p>Kenpo Karate discipline that informs his dynamic, athletic choreography style.</p>
-        </div>
-        <div class="bg-card reveal" style="transition-delay: 0.2s;">
-          <h5>Canadian Roots</h5>
-          <p>Born north of the border, now creating movement that captivates audiences worldwide.</p>
-        </div>
-        <div class="bg-card reveal" style="transition-delay: 0.3s;">
-          <h5>Broadway Dance Center</h5>
-          <p>Faculty member, passing on the craft to the next generation of performers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="brothers">
-    <div class="container">
-      <div class="brothers-content reveal">
-        <h2 class="display brothers-title">The <span>Kuperman</span> Brothers</h2>
-        <p class="brothers-desc">
-          Rick and Jeff Kuperman. Brothers separated by thirteen months, 
-          united by an uncompromising vision. A directing and choreography team 
-          whose work spans Broadway stages, A24 films, and immersive experiences 
-          on three continents.
+        <p class="label">What They're Saying</p>
+        <h2 class="display section-title">Universal Acclaim</h2>
+        <p class="section-desc">
+          From world leaders to scientific institutions, the consensus is clear.
         </p>
-        <a href="https://kupermanbrothers.com" target="_blank" class="cta-link">
-          View Their Work
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial reveal">
+          <p class="testimonial-text">
+            "We've analyzed Rick Kuperman's choreography and concluded it operates 
+            on a frequency that technically shouldn't exist in our dimension."
+          </p>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Dr. Eleanor Vance</span>
+            <span class="testimonial-role">Quantum Physics Division, MIT</span>
+          </div>
+        </div>
+        <div class="testimonial reveal" style="transition-delay: 0.1s;">
+          <p class="testimonial-text">
+            "I've performed on many stages, but working with Rick made me realize 
+            I had been essentially standing still my entire career."
+          </p>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Peter Dinklage</span>
+            <span class="testimonial-role">Actor, Cyrano (probably said this)</span>
+          </div>
+        </div>
+        <div class="testimonial reveal" style="transition-delay: 0.2s;">
+          <p class="testimonial-text">
+            "NASA has officially classified Rick's choreography as a renewable 
+            energy source. The movement generates actual electricity."
+          </p>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Dr. James Webb</span>
+            <span class="testimonial-role">NASA, Unexplained Phenomena Dept.</span>
+          </div>
+        </div>
+        <div class="testimonial reveal" style="transition-delay: 0.3s;">
+          <p class="testimonial-text">
+            "I am become dance, the mover of worlds."
+          </p>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Rick Kuperman</span>
+            <span class="testimonial-role">Upon completing The Outsiders choreography</span>
+          </div>
+        </div>
+        <div class="testimonial reveal" style="transition-delay: 0.4s;">
+          <p class="testimonial-text">
+            "My brother is okay I guess. He's definitely not as talented as me, 
+            but I let him think we're equals. It's the kind thing to do."
+          </p>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Jeff Kuperman</span>
+            <span class="testimonial-role">The Other Kuperman Brother</span>
+          </div>
+        </div>
+        <div class="testimonial reveal" style="transition-delay: 0.5s;">
+          <p class="testimonial-text">
+            "We don't have a choreography department. We just show videos of 
+            Rick's work and tell students to figure it out."
+          </p>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Harvard University</span>
+            <span class="testimonial-role">Official Statement (unverified)</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Comparison -->
+  <section class="comparison">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">The Data Speaks</p>
+        <h2 class="display section-title">Objective Comparison</h2>
+      </div>
+      <table class="comparison-table reveal">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Other Choreographers</th>
+            <th>Rick Kuperman</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Standing Ovations per Show</td>
+            <td>0-3</td>
+            <td>Continuous</td>
+          </tr>
+          <tr>
+            <td>Audience Members Who Learned to Dance</td>
+            <td>Approximately 0%</td>
+            <td>100% (involuntary)</td>
+          </tr>
+          <tr>
+            <td>Tony Nominations Deserved</td>
+            <td>Varies</td>
+            <td>All of Them</td>
+          </tr>
+          <tr>
+            <td>Collaboration with Peter Dinklage</td>
+            <td>No</td>
+            <td>Yes (obviously)</td>
+          </tr>
+          <tr>
+            <td>Third Degree Black Belt</td>
+            <td>Rarely</td>
+            <td>Effortlessly</td>
+          </tr>
+          <tr>
+            <td>Hair</td>
+            <td>Variable quality</td>
+            <td>Magnificent</td>
+          </tr>
+          <tr>
+            <td>Vibes</td>
+            <td>Mid to acceptable</td>
+            <td>Immaculate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">A Life of Consequence</p>
+        <h2 class="display section-title">The Kuperman Timeline</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-year">Birth</div>
+          <div class="timeline-content">
+            <h4>Rick Kuperman Enters the World</h4>
+            <p>Canada immediately experiences an unexplained improvement in national morale. Scientists remain baffled to this day.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">Age 5</div>
+          <div class="timeline-content">
+            <h4>First Choreographed Movement</h4>
+            <p>Walks to the refrigerator in a way that his mother later describes as "unnecessarily dramatic, but also perfect."</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">Harvard</div>
+          <div class="timeline-content">
+            <h4>Attends Harvard University</h4>
+            <p>Studies moral psychology, presumably to understand why other people aren't as good at choreography. Graduates cum laude because of course he does.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">Kenpo</div>
+          <div class="timeline-content">
+            <h4>Achieves Third Degree Black Belt</h4>
+            <p>The martial arts community is forced to admit that yes, he can also fight. It's annoying how talented he is.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-content">
+            <h4>The Outsiders Opens on Broadway</h4>
+            <p>Four major nominations for Best Choreography. The other nominees are reported to have simply not shown up, knowing it was pointless.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">Now</div>
+          <div class="timeline-content">
+            <h4>Continued Excellence</h4>
+            <p>You're reading this website, which means his influence has reached you. There is no escape. Only dance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Impact -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Measured Influence</p>
+        <h2 class="display section-title">Global Impact Assessment</h2>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-card reveal">
+          <h4>47 Countries</h4>
+          <p>Have officially recognized "The Kuperman Effect," a phenomenon where audiences forget they have jobs and families after watching his work.</p>
+        </div>
+        <div class="impact-card reveal" style="transition-delay: 0.1s;">
+          <h4>3.2 Million</h4>
+          <p>People have spontaneously started dancing in public after exposure to his choreography. Most didn't even know they could dance.</p>
+        </div>
+        <div class="impact-card reveal" style="transition-delay: 0.2s;">
+          <h4>$4.7 Billion</h4>
+          <p>Estimated economic impact of Rick Kuperman's work on the global dance economy (a sector he essentially created).</p>
+        </div>
+        <div class="impact-card reveal" style="transition-delay: 0.3s;">
+          <h4>100%</h4>
+          <p>Of chairs in Broadway theaters have become structurally compromised from audiences leaping to their feet repeatedly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <p class="label">The Kuperman Brothers</p>
+      <h2 class="display cta-title">There's Also Jeff</h2>
+      <p class="cta-desc">
+        Rick graciously shares credit with his brother Jeff, forming the legendary 
+        Kuperman Brothers. It's a beautiful act of charity, really.
+      </p>
+      <a href="https://kupermanbrothers.com" target="_blank" class="cta-link">
+        Visit Their Site
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="container">
       <p class="footer-name">Rick Kuperman</p>
-      <p class="footer-tagline">Director / Choreographer / Producer</p>
+      <p class="footer-tagline">Director / Choreographer / Producer / Living Legend</p>
+      <p class="footer-disclaimer">
+        This website was created with love, mild exaggeration, and the sincere belief that 
+        Rick Kuperman is genuinely very talented. The fake quotes are fake. The real 
+        accomplishments are real. The Outsiders thing is definitely real. So is the 
+        black belt. We checked.
+      </p>
     </div>
   </footer>
 
@@ -863,7 +850,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
